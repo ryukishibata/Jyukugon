@@ -4,9 +4,9 @@ using UnityEngine;
 public class PortalController : MonoBehaviour {
 
     [SerializeField]
-    Material material;
+    Material material;//UIPortalshader付きのマテリアル
     [SerializeField]
-    Texture texture;
+    Texture texture;//合成したいテクスチャがある場合はセットする
     [SerializeField]
     float radius = 0.15f;
 
