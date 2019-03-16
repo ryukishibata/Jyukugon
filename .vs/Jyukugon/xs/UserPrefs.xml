@@ -1,14 +1,28 @@
 ﻿<Properties StartupConfiguration="{C344D3F1-7388-2D29-C340-3C278B89B926}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Shaders/UIPortal.shader">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Shaders/Portal.shader">
     <Files>
+      <File FileName="Assets/Scripts/PortalController.cs" Line="62" Column="53" />
       <File FileName="Assets/Shaders/Portal.shader" Line="27" Column="25" />
-      <File FileName="Assets/Scripts/PortalController.cs" Line="33" Column="44" />
-      <File FileName="Assets/Shaders/UIPortal.shader" Line="118" Column="23" NotebookId="1" />
+      <File FileName="Assets/Shaders/UIPortal.shader" Line="87" Column="36" NotebookId="1" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Jyukugon" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True" />
+              <Node name="Shaders" expanded="True">
+                <Node name="Portal.shader" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="2b621b3c-b833-4100-bb29-d788330dcf10" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

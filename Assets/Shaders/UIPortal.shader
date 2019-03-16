@@ -76,14 +76,15 @@ Shader "Custom/UIPortal"
             };
 
             sampler2D _MainTex;
+            sampler2D _SubTex;//★PortalControllerで追加
             fixed4 _Color;
             fixed4 _TextureSampleAdd;
             float4 _ClipRect;
             float4 _MainTex_ST;
-            sampler2D _SubTex;//追加
-            float _Aspect;
-            float _Radius;
-            float2 _Position;
+            float2 _Position;//★左下を原点とした時のマウスの位置(0〜1)
+            float _Aspect;//★height/width(177928)
+            float _Radius;//★円の半径
+            float _DistortionWidth;//★縁の歪み幅
 
             v2f vert(appdata_t v)
             {
@@ -100,40 +101,29 @@ Shader "Custom/UIPortal"
             }
 
             fixed4 frag(v2f IN, v2f_img i) : SV_Target
-            {
-                half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;
+            {              
+                // ◆自身のピクセルからポータル中心までの距離
+                //  (ポータル中心と走査中の任意のピクセルまでの距離) * アスペクト比
+                //  lengthで距離の絶対値が返る？
+                float dist = length((_Position - i.uv) * float2(1, _Aspect));
+                
+                // ◆自身のピクセル位置での歪み具合
+                //  smoothstep(a, b, x)：xが(a〜b)の間ならば(0〜1)を、それ以外はxを返す
+                //  distortion:(1:穴部分, 1>0:圧縮画像, 0:メイン画)
+                float distortion = 1 - smoothstep(_Radius - _DistortionWidth, _Radius, dist);
                 
                 
-                float width = 0.07;
+                // ◆自身のピクセル位置での歪み具合分だけ
+                //  ポータル中心の方へずらしたuvを計算します
+                fixed2 uv = i.uv + (_Position - i.uv) * distortion;                            
                 
-                
-                // 自身のピクセルからポータル中心までの距離
-                float distance = length((_Position - i.uv) * float2(1, _Aspect));
-                
-                // 自身のピクセル位置での歪み具合
-                float distortion = 1 - smoothstep(_Radius - width, _Radius, distance);
-                
-                // 自身のピクセル位置での歪み具合分だけ
-                // ポータル中心の方へずらした uv を計算します
-                fixed2 uv = i.uv+ (_Position - i.uv) * distortion;                            
-                
-                #ifdef UNITY_UI_CLIP_RECT
-                color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
-                #endif
-                
-                #ifdef UNITY_UI_ALPHACLIP
-                clip (color.a - 0.001);
-                #endif
-                
-                // 計算した uv で _MainTex のカラーを出力します
-                // ポータル内に違う絵を出すために、
-                // lerp + step で出力テクスチャを切り替えています
-                return lerp(tex2D(_MainTex, uv),
+                // ◆計算したuvで出力テクスチャを切り替える
+                // lerp(a,b,x):(x=0)=>(a=1,b=0),(x=1)=>(a=0,b=1)で表示する
+                // step(a, x)  :(x>=a) ? 1 : 0;
+                // １以上：サブ画像, １未満：メイン画像
+                return lerp(tex2D(_MainTex,uv),
                             tex2D(_SubTex, i.uv),
                             step(1, distortion));
-                            
-                            
-                //return color;
             }
         ENDCG
         }
