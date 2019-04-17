@@ -1,19 +1,19 @@
 ﻿<Properties StartupConfiguration="{C344D3F1-7388-2D29-C340-3C278B89B926}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Shaders/Portal.shader">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PortalController.cs">
     <Files>
-      <File FileName="Assets/Scripts/PortalController.cs" Line="62" Column="53" />
-      <File FileName="Assets/Shaders/Portal.shader" Line="27" Column="25" />
-      <File FileName="Assets/Shaders/UIPortal.shader" Line="87" Column="36" NotebookId="1" />
+      <File FileName="Assets/Scripts/PortalController.cs" Line="64" Column="1" />
+      <File FileName="Assets/Shaders/Portal.shader" Line="23" Column="58" />
+      <File FileName="Assets/Shaders/UIPortal.shader" Line="81" Column="34" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Jyukugon" expanded="True">
             <Node name="Assets" expanded="True">
-              <Node name="Scripts" expanded="True" />
-              <Node name="Shaders" expanded="True">
-                <Node name="Portal.shader" selected="True" />
+              <Node name="Scripts" expanded="True">
+                <Node name="PortalController.cs" selected="True" />
               </Node>
+              <Node name="Shaders" expanded="True" />
             </Node>
           </Node>
         </State>
